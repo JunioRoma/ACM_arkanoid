@@ -49,7 +49,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		while(true){
 			Pelota1.muevete(this);
 			pause(tiempoPausa);
-			tiempoPausa -=0.0001333;
+			tiempoPausa -=0.0001433;
 			if(tiempoPausa<1){
 				tiempoPausa= 1;
 
