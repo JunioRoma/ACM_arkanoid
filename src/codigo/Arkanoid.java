@@ -54,12 +54,12 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 				tiempoPausa= 1;
 
 			}
-			barra1.mueveBarra((int)Pelota1.getX(), getWidth()-espacioMenu);
+			
 		}
 	}
 
 	public void mouseMoved(MouseEvent evento){
-		barra1.mueveBarra((int)Pelota1.getX(), getWidth()-espacioMenu);
+		barra1.mueveBarra(evento.getX(), getWidth()-espacioMenu);
 
 	}
 
