@@ -22,7 +22,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 	int anchoLadrillo=29;
 	int altoLadrillo=15;
 	//El sistema del marcador
-	int puntuacion=0;
+	
 	Marcador marcador= new Marcador(20,40);
 	int espacioMenu=75;
 
@@ -54,7 +54,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 				tiempoPausa= 1;
 
 			}
-			//barra1.mueveBarra((int)Pelota1.getX(), getWidth()-espacioMenu);
+			barra1.mueveBarra((int)Pelota1.getX(), getWidth()-espacioMenu);
 		}
 	}
 
