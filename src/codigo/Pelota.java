@@ -100,8 +100,20 @@ public class Pelota extends GOval{
 			noHaChocado=false;
 		}
 		else if(auxiliar instanceof Barra){
+			yVelocidad *=-40;
+			//Vamos a modificar el choque d ela bola con el cursor
+			//Para que no sea siempre el mismo.
 
-			randomVelocidad();
+			//calculo la posicion x del punto de la pelota
+			double centroBola= getX()+getWidth()/2;
+			if(centroBola > (auxiliar.getX() + auxiliar.getWidth()/3) && 
+		       centroBola < (auxiliar.getX() + 2*auxiliar.getX()/3)){
+				yVelocidad *=-1;
+			}
+			else{
+				yVelocidad = -0.3;
+			}
+			
 			noHaChocado = false;
 		}
 		return noHaChocado;
