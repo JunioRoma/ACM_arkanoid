@@ -30,7 +30,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
     int px; //es la ubicacion de la pelota en x
     int py; //es la ubicacion de la pelota en y
     int score=0; //son los puntos
-    int vidas=4; //es la cantidad de vidas
+    int vidas=3; //es la cantidad de vidas
     float incX=1; 
     boolean inicio= false;
     Random r= new Random();
@@ -38,11 +38,10 @@ public class Arkanoid extends acm.program.GraphicsProgram{
     	
 	Marcador marcador= new Marcador(20,40);
 	int espacioMenu=75;
-	Texto coments= new Texto();
+	
 	
 	public void init(){
 		
-		coments.dibujar(this);
 		waitForClick() ;//Clikea y empieza
 		addMouseListeners();
 		setSize(500, 600);

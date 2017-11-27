@@ -100,8 +100,8 @@ public class Pelota extends GOval{
 			noHaChocado=false;
 		}
 		else if(auxiliar instanceof Barra){
-			yVelocidad *=-40;
-			//Vamos a modificar el choque d ela bola con el cursor
+			yVelocidad *=-5;
+			//Vamos a modificar el choque de la bola con el cursor
 			//Para que no sea siempre el mismo.
 
 			//calculo la posicion x del punto de la pelota
@@ -111,7 +111,7 @@ public class Pelota extends GOval{
 				yVelocidad *=-1;
 			}
 			else{
-				yVelocidad = -0.3;
+				yVelocidad *= -0.5;
 			}
 			
 			noHaChocado = false;
