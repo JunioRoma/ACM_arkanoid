@@ -99,42 +99,46 @@ public class Pelota extends GOval{
 			_arkanoid.marcador.actualizaMarcador(1);
 			noHaChocado=false;
 		}
-		else if(auxiliar instanceof Barra){
-			yVelocidad *=-5;
-			//Vamos a modificar el choque de la bola con el cursor
-			//Para que no sea siempre el mismo.
-
-			//calculo la posicion x del punto de la pelota
-			double centroBola= getX()+getWidth()/2;
-			if(centroBola > (auxiliar.getX() + auxiliar.getWidth()/3) && 
-		       centroBola < (auxiliar.getX() + 2*auxiliar.getX()/3)){
-				yVelocidad *=-1;
-			}
-			else{
-				yVelocidad *= -0.5;
-			}
+		else if (auxiliar instanceof Barra){
+			//vamos a modificar el rebote de la bola con el cursor
+			//para que no sea siempre igual
 			
+			//calculo la posición x del punto central de la bola
+			double centroBola = getX() + getWidth()/2;
+			if (centroBola > auxiliar.getX() + auxiliar.getWidth()/3 && 
+				centroBola < auxiliar.getX() + 2 * auxiliar.getWidth()/3){
+				yVelocidad = -2;
+			}
+			else {
+				yVelocidad = -0.5;
+			}
 			noHaChocado = false;
 		}
 		return noHaChocado;
 
-
-
-
 	}
-	public void yVelocidadContraria(){
-		yVelocidad = -yVelocidad;
+		
+		
+
+
+	public void bounce(){
+	    yVelocidad = -1*yVelocidad;    
 	}
-
-	public void xVelocidadContraria(){
-		xVelocidad = -xVelocidad;
+	public void bounceleft(){
+		yVelocidad = -1*yVelocidad; 
+	     if(xVelocidad >=0){
+	    	 xVelocidad = -Math.abs(xVelocidad);
+	     }else{
+	    	 xVelocidad = -Math.abs(xVelocidad);
+	     }
 	}
-
-	public void randomVelocidad(){
-		Random generator = new Random();
-
-		yVelocidad *=-1;
-
+	public void bounceright(){
+		yVelocidad = -1*yVelocidad; 
+	          if(xVelocidad <=0){
+	        	  xVelocidad = -xVelocidad;
+	     }else{
+	    	 xVelocidad = Math.abs(xVelocidad);
+	     }
 	}
 
 }
