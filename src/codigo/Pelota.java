@@ -9,6 +9,7 @@ import java.awt.Color;
 import acm.graphics.GRect;
 import java.util.Random;
 
+import acm.graphics.GLabel;
 import acm.graphics.GObject;
 import acm.graphics.GOval;
 
@@ -17,7 +18,7 @@ public class Pelota extends GOval{
 	double xVelocidad= 1; //Velocidad de la bola en el eje X
 	double yVelocidad= -1; //Velocidad de la bola en el eje Y
 	GRect Rect;
-
+	private static final int DELAY = 10;
 
 	/**
 	 * Este es el Constructor basico, que es identico 
@@ -63,6 +64,32 @@ public class Pelota extends GOval{
 			yVelocidad*=-1;
 
 		}
+
+		//Las siguentes 3 condiciones son creadas para que el juego funcione con vidas---------------------------------------------------------------------------
+		if(this.getY() >= _arkanoid.getHeight() && _arkanoid.vidaAbajo.numvidas >=3){
+			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.80 - this.getHeight());
+			_arkanoid.vidaAbajo.actualizaVidas(-1);
+			
+		}
+
+		if(this.getY() >= _arkanoid.getHeight() && _arkanoid.vidaAbajo.numvidas >=2){
+			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.80 - this.getHeight());
+			_arkanoid.vidaAbajo.actualizaVidas(-1);
+		}
+		
+		if(this.getY() >= _arkanoid.getHeight() && _arkanoid.vidaAbajo.numvidas >=1){
+			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.80 - this.getHeight());
+			_arkanoid.vidaAbajo.actualizaVidas(-1);
+			
+		}
+		
+		if(_arkanoid.vidaAbajo.numvidas== 0) {
+			GLabel gameOver = new GLabel ("Game Over", getWidth()/2, getHeight()/2);
+			add(gameOver);
+		}
+		//-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 		if (chequeaColision(getX(), getY(), _arkanoid)){//Chequeo la esquina superior izquierda
 
 			if (chequeaColision(getX()+getWidth(), getY(), _arkanoid)){//Chequeo la esquina  superior derecha
@@ -70,6 +97,10 @@ public class Pelota extends GOval{
 				if (chequeaColision(getX()+getWidth(), getY()+getWidth(), _arkanoid)){//Chequeo la esquina inferior izquierda
 
 					if (chequeaColision(getX(), getY()+getWidth(), _arkanoid)){	//Chequeo la esquina inferior derecha
+
+						if (chequeaColision(getX(), getY()+getWidth()/2, _arkanoid)){	//Chequeo la parte central superior
+
+						}
 					}
 				}
 			}
@@ -81,6 +112,13 @@ public class Pelota extends GOval{
 
 		move(xVelocidad, yVelocidad);
 
+	}
+
+
+
+	private void add(GLabel gameOver) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private boolean chequeaColision(double posX, double posY, Arkanoid _arkanoid){
@@ -102,11 +140,11 @@ public class Pelota extends GOval{
 		else if (auxiliar instanceof Barra){
 			//vamos a modificar el rebote de la bola con el cursor
 			//para que no sea siempre igual
-			
+
 			//calculo la posición x del punto central de la bola
 			double centroBola = getX() + getWidth()/2;
 			if (centroBola > auxiliar.getX() + auxiliar.getWidth()/3 && 
-				centroBola < auxiliar.getX() + 2 * auxiliar.getWidth()/3){
+					centroBola < auxiliar.getX() + 2 * auxiliar.getWidth()/3){
 				yVelocidad = -2;
 			}
 			else {
@@ -116,29 +154,6 @@ public class Pelota extends GOval{
 		}
 		return noHaChocado;
 
-	}
-		
-		
-
-
-	public void bounce(){
-	    yVelocidad = -1*yVelocidad;    
-	}
-	public void bounceleft(){
-		yVelocidad = -1*yVelocidad; 
-	     if(xVelocidad >=0){
-	    	 xVelocidad = -Math.abs(xVelocidad);
-	     }else{
-	    	 xVelocidad = -Math.abs(xVelocidad);
-	     }
-	}
-	public void bounceright(){
-		yVelocidad = -1*yVelocidad; 
-	          if(xVelocidad <=0){
-	        	  xVelocidad = -xVelocidad;
-	     }else{
-	    	 xVelocidad = Math.abs(xVelocidad);
-	     }
 	}
 
 }

@@ -20,37 +20,35 @@ import java.applet.*;
  */
 
 public class Arkanoid extends acm.program.GraphicsProgram{
-	
+
 	RandomGenerator aleatorio = new RandomGenerator();
 	Pelota Pelota1=new Pelota(15,Color.green);
 	Pelota Pelota2=new Pelota(40,Color.red);
 	Barra barra1=new Barra(70, 10, Color.red );
 	int anchoLadrillo=29;
 	int altoLadrillo=15;
-	//El sistema del marcador
-	int bx=220; //es la ubicacion en x de la barra donde rebota la pelota
-	int by; //es la ubicacion en y de la barra donde rebota la pelota
-	int px; //es la ubicacion de la pelota en x
-	int py; //es la ubicacion de la pelota en y
-	float incX=1; 
-	boolean inicio= false;
+	//El sistema del marcado
 	Random r= new Random();
 	Panel panel= new Panel();
 	GImage imagenFondo = new GImage("joker.gif");
+	GImage imagenGameOver = new GImage("loser.gif");
+	GImage imagenWin = new GImage("win.gif");
 	GLabel texto= new GLabel("");
-	Vidas vidas= new Vidas(40,160);
+
 	Marcador marcador= new Marcador(40,80);
 	int espacioMenu=75;
-
+	Vidas vidaAbajo = new Vidas (40,80);
+	GLabel hasPerdido = new GLabel("GAME OVER");												//Texto de has perdido
+	GLabel hasGanado = new GLabel("YOU WIN!");	
 
 	public void init(){
 
 		add(imagenFondo, -200, 0);
 
 		Portada portada1 = new Portada(0,0);
-
 		portada1.dibuja(this);
 
+		
 
 		waitForClick() ;//Clikea y empieza
 		remove(portada1.portada);
@@ -73,8 +71,9 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 
 
 		dibujaNivel01();
-		vidas.dibuja(this);
+
 		marcador.dibuja(this);
+		vidaAbajo.dibuja(this);	
 		float tiempoPausa= 5;
 		while(true){
 			Pelota1.muevete(this);
@@ -84,10 +83,31 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 				tiempoPausa= 1;
 
 			}
+			if(vidaAbajo.numvidas <= 0)	{															//Si el juego tiene 0 vidas termina el juego añadiendo 
+
+				removeAll();
+				GameOver gameOver1= new GameOver(0, 0);						//Añado GAME OVER
+				gameOver1.dibuja(this);	
+				add(imagenGameOver,120, 0);
+				
+			}
 			
+			if(marcador.puntuacion >= 91) {
+
+				
+				removeAll();
+				Win winner1= new Win(0,0);
+				winner1.dibuja(this);
+				add(imagenWin, 95, 0);
+				
+										
+			}
+			//barra1.mueveBarra((int)Pelota1.getX(), getWidth()-espacioMenu);
 		}
-		//barra1.mueveBarra((int)Pelota1.getX(), getWidth()-espacioMenu);
+
+
 	}
+
 
 
 	public void mouseMoved(MouseEvent evento){
@@ -107,37 +127,46 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 			}
 		}
 	}
-	private void printGameOver() {
-		GLabel gameOver = new GLabel ("Game Over", getWidth()/2, getHeight()/2);
-		gameOver.move(-gameOver.getWidth()/2, -gameOver.getHeight());
-		gameOver.setColor(Color.RED);
-		add (gameOver);
-	}
 
-	private int brickCounter = 100;
+
 
 	private void printWinner() {
 		GLabel Winner = new GLabel ("Winner!!", getWidth()/2, getHeight()/2);
 		Winner.move(-Winner.getWidth()/2, -Winner.getHeight());
 		Winner.setColor(Color.RED);
-		add (Winner);
+
+
+		
+
+
+
+
+
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
