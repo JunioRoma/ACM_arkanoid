@@ -34,7 +34,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 	GImage imagenGameOver = new GImage("loser.gif");
 	GImage imagenWin = new GImage("win.gif");
 	GLabel texto= new GLabel("");
-
+	float tiempoPausa= 5;
 	Marcador marcador= new Marcador(40,80);
 	int espacioMenu=75;
 	Vidas vidaAbajo = new Vidas (40,80);
@@ -48,7 +48,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		Portada portada1 = new Portada(0,0);
 		portada1.dibuja(this);
 
-		
+
 
 		waitForClick() ;//Clikea y empieza
 		remove(portada1.portada);
@@ -74,7 +74,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 
 		marcador.dibuja(this);
 		vidaAbajo.dibuja(this);	
-		float tiempoPausa= 5;
+
 		while(true){
 			Pelota1.muevete(this);
 			pause(tiempoPausa);
@@ -89,18 +89,18 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 				GameOver gameOver1= new GameOver(0, 0);						//Añado GAME OVER
 				gameOver1.dibuja(this);	
 				add(imagenGameOver,120, 0);
-				
+
 			}
-			
+
 			if(marcador.puntuacion >= 91) {
 
-				
+
 				removeAll();
 				Win winner1= new Win(0,0);
 				winner1.dibuja(this);
 				add(imagenWin, 95, 0);
-				
-										
+
+
 			}
 			//barra1.mueveBarra((int)Pelota1.getX(), getWidth()-espacioMenu);
 		}
@@ -136,7 +136,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		Winner.setColor(Color.RED);
 
 
-		
+
 
 
 

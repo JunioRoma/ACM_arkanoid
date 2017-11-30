@@ -7,6 +7,8 @@ package codigo;
  */
 import java.awt.Color;
 import acm.graphics.GRect;
+import acm.util.RandomGenerator;
+
 import java.util.Random;
 
 import acm.graphics.GLabel;
@@ -18,6 +20,7 @@ public class Pelota extends GOval{
 	double xVelocidad= 1; //Velocidad de la bola en el eje X
 	double yVelocidad= -1; //Velocidad de la bola en el eje Y
 	GRect Rect;
+	RandomGenerator aleatorio = new RandomGenerator();
 	private static final int DELAY = 10;
 
 	/**
@@ -69,20 +72,29 @@ public class Pelota extends GOval{
 		if(this.getY() >= _arkanoid.getHeight() && _arkanoid.vidaAbajo.numvidas >=3){
 			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.80 - this.getHeight());
 			_arkanoid.vidaAbajo.actualizaVidas(-1);
-			
+			yVelocidad = -1;
+			_arkanoid.tiempoPausa = 5;
+			_arkanoid.waitForClick();
+
 		}
 
 		if(this.getY() >= _arkanoid.getHeight() && _arkanoid.vidaAbajo.numvidas >=2){
 			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.80 - this.getHeight());
 			_arkanoid.vidaAbajo.actualizaVidas(-1);
+			yVelocidad = -1;
+			_arkanoid.tiempoPausa = 5;
+			_arkanoid.waitForClick();
 		}
-		
+
 		if(this.getY() >= _arkanoid.getHeight() && _arkanoid.vidaAbajo.numvidas >=1){
 			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.80 - this.getHeight());
 			_arkanoid.vidaAbajo.actualizaVidas(-1);
-			
+			yVelocidad = -1;
+			_arkanoid.tiempoPausa = 5;
+			_arkanoid.waitForClick();
+
 		}
-		
+
 		if(_arkanoid.vidaAbajo.numvidas== 0) {
 			GLabel gameOver = new GLabel ("Game Over", getWidth()/2, getHeight()/2);
 			add(gameOver);
@@ -118,7 +130,7 @@ public class Pelota extends GOval{
 
 	private void add(GLabel gameOver) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private boolean chequeaColision(double posX, double posY, Arkanoid _arkanoid){
