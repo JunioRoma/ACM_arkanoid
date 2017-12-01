@@ -1,5 +1,9 @@
 package codigo;
-
+/*
+ * Autor:Jose Antonio Roma
+ * -----------------------
+ * Esto es la clase Barra
+ */
 import java.awt.Color;
 
 import acm.graphics.GRect;
@@ -32,7 +36,7 @@ public class Barra extends GRect{
 	 * @param posX ->PosicionX del ratón.
 	 * @param anchopantalla ->Pq asi no tengo que pasar nada mas.
 	 */
-	public void mueveBarra(int posX, int anchopantalla){
+	public void mueveBarra(int posX, int anchopantalla){//Asi declaramos la barra para q no llegue a traspasar las paredes
 		if (posX + getWidth() < anchopantalla){
 			setLocation(posX, getY());
 		}
